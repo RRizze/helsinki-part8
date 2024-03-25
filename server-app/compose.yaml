@@ -1,0 +1,21 @@
+services:
+  books-mongo:
+    image: mongo
+    container_name: books-mongo
+    ports:
+      - '127.0.0.1:27017:27017'
+    volumes:
+      - books-mongo-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: secret
+      MONGO_INITDB_DATABASE: books
+    networks:
+      - mongodb-network
+
+volumes:
+  books-mongo-data:
+
+networks:
+  mongodb-network:
+    driver: bridge
